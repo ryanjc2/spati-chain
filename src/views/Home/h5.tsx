@@ -143,7 +143,7 @@ const Technology = () => {
   return (
     <div  id="technology" className="px-5 space-y-[17px]">
       <div className="py-10">
-        <div className="text-white text-xl font-normal font-['Aldrich'] leading-normal">
+        <div className="text-white text-xl font-normal font-['Aldrich'] leading-normal mb-6">
           Core Technology
         </div>
         <div className="flex gap-6  text-xs font-normal font-['Aldrich'] leading-[23px]">
