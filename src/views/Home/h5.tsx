@@ -23,7 +23,7 @@ const Home = () => {
 
       <div className="px-5">
         <div className="flex justify-center mb-6">
-          <div className="h-14 px-4 py-3 bg-white rounded-[47px] justify-center items-center inline-flex">
+          <div className="h-14 px-4 py-3 bg-white rounded-[47px] justify-center items-center inline-flex w-full">
             <div className="text-black text-base font-normal font-['Aldrich'] leading-loose">
               Explore Ecosystem
             </div>
