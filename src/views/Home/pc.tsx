@@ -12,14 +12,14 @@ import tg from '@/assets/images/home/tg.png'
 import email from '@/assets/images/home/email.png'
 import zoom from '@/assets/images/home/Zone.png'
 import { useState } from 'react'
-import bg from '@/assets/images/home/bg.jpeg'
+import Spline from '@splinetool/react-spline';
 
 export const PC = () => {
   const [index, setIndex] = useState<number>(0)
 
   return <>
-    <div className="max-w-[1440px] w-[full] my-[0] mx-[auto]" style={{ background: `url(${bg})`, backgroundSize: '100%', backgroundRepeat: 'no-repeat' }}>
-      <div className='h-[864px]'>
+    <div className="max-w-[1440px] w-[full] my-[0] mx-[auto]">
+      <div >
         <p className="text-[white] text-[76px] text-center font-[aldrich] pt-[56px]">Hello,Spati Ai</p>
         <div className="flex justify-center cursor-[pointer] itmes-center border-[1px] border-[#333333] w-[280px] rounded-[47px] mx-[auto] my-[12px] py-[12px] duration-[1s] bg-[black] hover:bg-[white] text-[white] hover:text-[black]">
           <span>Explore Ecosystem</span>
@@ -28,6 +28,9 @@ export const PC = () => {
           <span className="text-[white] hover:text-[#FFAE00] cursor-[pointer] duration-[0.5s]">「Join the community」</span>
           <span className="text-[white] hover:text-[#FFAE00] cursor-[pointer] duration-[0.5s]">「Developer」</span>
         </div>
+      </div>
+      <div className='mt-[-100px] mb-[100px]'>
+        <Spline scene="https://prod.spline.design/Z9ZJ9BqMP2Lyz8XS/scene.splinecode" />
       </div>
       <div className="text-white font-[aldrich] text-[28px] w-[880px] mt-[50px]">
         <p>Through space intelligence technology and blockchain,</p>
