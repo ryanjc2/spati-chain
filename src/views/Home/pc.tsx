@@ -11,18 +11,34 @@ import pic10 from '@/assets/images/home/pic10.jpeg'
 import tg from '@/assets/images/home/tg.png'
 import email from '@/assets/images/home/email.png'
 import zoom from '@/assets/images/home/Zone.png'
+import zoom2 from '@/assets/images/home/zoom2.png'
+import zoom3 from '@/assets/images/home/zoom3.png'
+import zoom4 from '@/assets/images/home/zoom4.png'
+import rightWhite from '@/assets/images/home/right_white.png'
+import rightBlack from '@/assets/images/home/right_black.png'
+import share from '@/assets/images/home/share.svg'
+import shareBlack from '@/assets/images/home/share_black.svg'
+
 import { useState } from 'react'
 import Spline from '@splinetool/react-spline';
 
 export const PC = () => {
   const [index, setIndex] = useState<number>(0)
+  const [move1, setMove1] = useState<boolean>(false)
+  const [move2, setMove2] = useState<boolean>(false)
+  const [move3, setMove3] = useState<boolean>(false)
+  const [move4, setMove4] = useState<boolean>(false)
+  const [move5, setMove5] = useState<boolean>(false)
+  const [move6, setMove6] = useState<boolean>(false)
+  const [shareMove, setShareMove] = useState<boolean>(false)
 
   return <>
     <div className="max-w-[1440px] w-[full] my-[0] mx-[auto]">
-      <div >
+      <div className='relative z-[1000]'>
         <p className="text-[white] text-[76px] text-center font-[aldrich] pt-[56px]">Hello,Spati Ai</p>
-        <div className="flex justify-center cursor-[pointer] itmes-center border-[1px] border-[#333333] w-[280px] rounded-[47px] mx-[auto] my-[12px] py-[12px] duration-[1s] bg-[black] hover:bg-[white] text-[white] hover:text-[black]">
+        <div className="flex justify-center cursor-[pointer] itmes-center border-[1px] border-[#333333] w-[280px] rounded-[47px] mx-[auto] my-[12px] py-[12px] duration-[1s] bg-[black] hover:bg-[white] text-[white] hover:text-[black]" onMouseMove={() => setShareMove(true)} onMouseOut={() => setShareMove(false)}>
           <span>Explore Ecosystem</span>
+          <img className='ml-[5px]' src={shareMove ? shareBlack : share} alt="" />
         </div>
         <div className="flex justify-center itmes-center gap-x-[26px]">
           <span className="text-[white] hover:text-[#FFAE00] cursor-[pointer] duration-[0.5s]">「Join the community」</span>
@@ -37,14 +53,26 @@ export const PC = () => {
         <p className="mt-[20px]">create an open, diverse, decentralized virtual world</p>
         <p className="mt-[20px]">allow users to freely create, explore, interact, and own their own digital assets.</p>
       </div>
-      <div className='flex justify-between items-center mt-[117px]'>
-        <div className='font-[aldrich]'>
-          <p className='text-[#333333] hover:text-[white] cursor-[pointer]' style={{ color: index === 0 ? 'white' : '#333333' }} onClick={() => setIndex(0)}>Stimulate user creativity</p>
-          <p className='text-[#333333] hover:text-[white] mt-[98px] cursor-[pointer]' style={{ color: index === 1 ? 'white' : '#333333' }} onClick={() => setIndex(1)}>Promoting innovation in spatial computing technology</p>
-          <p className='text-[#333333] hover:text-[white] mt-[98px] cursor-[pointer]' style={{ color: index === 2 ? 'white' : '#333333' }} onClick={() => setIndex(2)}>Building a decentralized creator economy</p>
-          <p className='text-[#333333] hover:text-[white] mt-[98px] cursor-[pointer]' style={{ color: index === 3 ? 'white' : '#333333' }} onClick={() => setIndex(3)}>Forming an open and inclusive multiverse community</p>
+      <div className='h-[400px] overflow-y-auto mt-[117px] relative flex justify-between' onScroll={(e) => {
+        // @ts-ignore
+        const scrollTop = e.target.scrollTop;
+        // @ts-ignore
+        const imageHeight = e.target.scrollHeight / 4;
+        const index = Math.min(3, Math.ceil(scrollTop / imageHeight));
+        setIndex(index);
+      }}>
+        <div className='font-[aldrich] sticky left-[0] top-0'>
+          <p className='text-[#333333] hover:text-[white] cursor-[pointer]' style={{ color: 'white' }}>Stimulate user creativity</p>
+          <p className='text-[#333333] hover:text-[white] mt-[98px] cursor-[pointer]' style={{ color: index > 0 ? 'white' : '#333333' }}>Promoting innovation in spatial computing technology</p>
+          <p className='text-[#333333] hover:text-[white] mt-[98px] cursor-[pointer]' style={{ color: index > 1 ? 'white' : '#333333' }}>Building a decentralized creator economy</p>
+          <p className='text-[#333333] hover:text-[white] mt-[98px] cursor-[pointer]' style={{ color: index > 2 ? 'white' : '#333333' }}>Forming an open and inclusive multiverse community</p>
         </div>
-        <img src={zoom} alt="" />
+        <div>
+          <img className='my-[20px]' src={zoom} alt="" />
+          <img className='my-[20px]' src={zoom2} alt="" />
+          <img className='my-[20px]' src={zoom3} alt="" />
+          <img className='my-[20px]' src={zoom4} alt="" />
+        </div>
       </div>
       <div className="flex justify-between items-center font-[aldrich]">
         <div className="flex flex-col w-[360px] text-[white]">
@@ -124,7 +152,15 @@ export const PC = () => {
           <p className='w-[494px] text-[#8E939A]'>Reshape the spatial computing paradigm and build a decentralized creator economy, allowing everyone to freely explore and create infinite possibilities in the digital space.</p>
         </div>
         <div className='mt-[123px] flex flex-wrap gap-[12px]'>
-          <div className='relative  overflow-hidden border-[#333333] border-[1px] rounded-[20px] px-[24px] group py-[36px] w-[445px] h-[240px] '>
+          <div className='relative overflow-hidden border-[#333333] border-[1px] rounded-[20px] px-[24px] group py-[36px] w-[445px] h-[240px]' onMouseMove={() => {
+            if (!move1) {
+              setMove1(true)
+            }
+          }} onMouseOut={() => setMove1(false)}>
+            <div className='z-[500] w-[60px] h-[60px] absolute right-[24px] top-[36px] rounded-[50%] bg-[#333333] flex justify-center items-center overflow-hidden'>
+              <div className='absolute  zIndex-[50] w-[60px] h-[60px] left-[-60px] top-[-60px] rounded-[50%] bg-[white] group-hover:translate-x-[60px] group-hover:translate-y-[60px] transition-all duration-500' />
+              <img className='relative zIndex-[100]' src={move1 ? rightBlack : rightWhite} alt="" />
+            </div>
             <p className="relative z-[500] text-[white] text-[28px] w-[321px] bg-[transparent]">Metaverse</p>
             <p className='text-[12px] text-[white] mt-[11px] w-[160px] bg-[transparent]'>Freely build a personalized virtual space</p>
             <div
@@ -132,7 +168,15 @@ export const PC = () => {
               style={{ backgroundImage: `url(${pic5})` }}
             ></div>
           </div>
-          <div className='relative overflow-hidden group border-[#333333] border-[1px] rounded-[20px] px-[24px] py-[36px] w-[445px] h-[240px]'>
+          <div className='relative overflow-hidden group border-[#333333] border-[1px] rounded-[20px] px-[24px] py-[36px] w-[445px] h-[240px]' onMouseMove={() => {
+            if (!move2) {
+              setMove2(true)
+            }
+          }} onMouseOut={() => setMove2(false)}>
+            <div className='z-[500] w-[60px] h-[60px] absolute right-[24px] top-[36px] rounded-[50%] bg-[#333333] flex justify-center items-center overflow-hidden'>
+              <div className='absolute  zIndex-[50] w-[60px] h-[60px] left-[-60px] top-[-60px] rounded-[50%] bg-[white] group-hover:translate-x-[60px] group-hover:translate-y-[60px] transition-all duration-500' />
+              <img className='relative zIndex-[100]' src={move2 ? rightBlack : rightWhite} alt="" />
+            </div>
             <p className="relative z-[500] text-[white] text-[28px] w-[321px]">GameFi</p>
             <p className='text-[12px] text-[white] mt-[11px] w-[160px]'>Intelligent NPC, dynamic environment</p>
             <div
@@ -140,7 +184,15 @@ export const PC = () => {
               style={{ backgroundImage: `url(${pic6})` }}
             ></div>
           </div>
-          <div className='relative  overflow-hidden group border-[#333333] border-[1px] rounded-[20px] px-[24px] py-[36px] w-[445px] h-[240px]'>
+          <div className='relative  overflow-hidden group border-[#333333] border-[1px] rounded-[20px] px-[24px] py-[36px] w-[445px] h-[240px]' onMouseMove={() => {
+            if (!move3) {
+              setMove3(true)
+            }
+          }} onMouseOut={() => setMove3(false)}>
+            <div className='z-[500] w-[60px] h-[60px] absolute right-[24px] top-[36px] rounded-[50%] bg-[#333333] flex justify-center items-center overflow-hidden'>
+              <div className='absolute  zIndex-[50] w-[60px] h-[60px] left-[-60px] top-[-60px] rounded-[50%] bg-[white] group-hover:translate-x-[60px] group-hover:translate-y-[60px] transition-all duration-500' />
+              <img className='relative zIndex-[100]' src={move3 ? rightBlack : rightWhite} alt="" />
+            </div>
             <p className="relative z-[500] text-[white] text-[28px] w-[321px]">Video Creation</p>
             <p className='text-[12px] text-[white] mt-[11px] w-[160px]'>Intelligent editing and special effects generation</p>
             <div
@@ -148,7 +200,15 @@ export const PC = () => {
               style={{ backgroundImage: `url(${pic7})` }}
             ></div>
           </div>
-          <div className='relative overflow-hidden group border-[#333333] border-[1px] rounded-[20px] px-[24px] py-[36px] w-[445px] h-[240px]'>
+          <div className='relative overflow-hidden group border-[#333333] border-[1px] rounded-[20px] px-[24px] py-[36px] w-[445px] h-[240px]' onMouseMove={() => {
+            if (!move4) {
+              setMove4(true)
+            }
+          }} onMouseOut={() => setMove4(false)}>
+            <div className='z-[500]  w-[60px] h-[60px] absolute right-[24px] top-[36px] rounded-[50%] bg-[#333333] flex justify-center items-center overflow-hidden'>
+              <div className='absolute  zIndex-[50] w-[60px] h-[60px] left-[-60px] top-[-60px] rounded-[50%] bg-[white] group-hover:translate-x-[60px] group-hover:translate-y-[60px] transition-all duration-500' />
+              <img className='relative zIndex-[100]' src={move4 ? rightBlack : rightWhite} alt="" />
+            </div>
             <p className="relative z-[500] text-[white] text-[28px] w-[321px]">Smart furniture</p>
             <p className='text-[12px] text-[white] mt-[11px] w-[160px]'>Automation</p>
             <div
@@ -156,7 +216,15 @@ export const PC = () => {
               style={{ backgroundImage: `url(${pic8})` }}
             ></div>
           </div>
-          <div className='relative overflow-hidden group border-[#333333] border-[1px] rounded-[20px] px-[24px] py-[36px] w-[445px] h-[240px]'>
+          <div className='relative overflow-hidden group border-[#333333] border-[1px] rounded-[20px] px-[24px] py-[36px] w-[445px] h-[240px]' onMouseMove={() => {
+            if (!move5) {
+              setMove5(true)
+            }
+          }} onMouseOut={() => setMove5(false)}>
+            <div className='z-[500] w-[60px] h-[60px] absolute right-[24px] top-[36px] rounded-[50%] bg-[#333333] flex justify-center items-center overflow-hidden'>
+              <div className='absolute  z-[50] w-[60px] h-[60px] left-[-60px] top-[-60px] rounded-[50%] bg-[white] group-hover:translate-x-[60px] group-hover:translate-y-[60px] transition-all duration-500' />
+              <img className='relative z-[100]' src={move5 ? rightBlack : rightWhite} alt="" />
+            </div>
             <p className="relative z-[500] text-[white] text-[28px] w-[321px]">Education and Training</p>
             <p className='text-[12px] text-[white] mt-[11px] w-[160px]'>Immersive learning and simulation training</p>
             <div
@@ -164,11 +232,19 @@ export const PC = () => {
               style={{ backgroundImage: `url(${pic9})` }}
             ></div>
           </div>
-          <div className='relative overflow-hidden group border-[#333333] border-[1px] rounded-[20px] px-[24px] py-[36px] w-[445px] h-[240px]'>
+          <div className='relative overflow-hidden group border-[#333333] border-[1px] rounded-[20px] px-[24px] py-[36px] w-[445px] h-[240px]' onMouseMove={() => {
+            if (!move6) {
+              setMove6(true)
+            }
+          }} onMouseOut={() => setMove6(false)}>
+            <div className='z-[500] w-[60px] h-[60px] absolute right-[24px] top-[36px] rounded-[50%] bg-[#333333] flex justify-center items-center overflow-hidden'>
+              <div className='absolute  zIndex-[50] w-[60px] h-[60px] left-[-60px] top-[-60px] rounded-[50%] bg-[white] group-hover:translate-x-[60px] group-hover:translate-y-[60px] transition-all duration-500' />
+              <img className='relative zIndex-[100]' src={move6 ? rightBlack : rightWhite} alt="" />
+            </div>
             <p className="relative z-[500] text-[white] text-[28px] w-[321px]">VR / AR</p>
             <p className='text-[12px] text-[white] mt-[11px] w-[160px]'>Virtual tours, augmented reality experiences</p>
             <div
-              className="absolute z-[100] w-[272px] h-[205px] duration-[1s] right-[-10px] bottom-[20px] bg-cover bg-center transform scale-[1] transition-all group-hover:scale-[1.1] group-hover:right-[-5px]"
+              className="absolute z-[100] w-[260px] h-[204px] duration-[1s] right-[-10px] bottom-[20px] bg-cover bg-center transform scale-[1] transition-all group-hover:scale-[1.1] group-hover:right-[-5px]"
               style={{ backgroundImage: `url(${pic10})` }}
             ></div>
           </div>
